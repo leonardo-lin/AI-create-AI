@@ -1,177 +1,238 @@
-
-# MetaGPT: The Multi-Agent Framework
-
-<p align="center">
-<a href=""><img src="docs/resources/MetaGPT-new-log.png" alt="MetaGPT logo: Enable GPT to work in a software company, collaborating to tackle more complex tasks." width="150px"></a>
-</p>
+# AI-create-AI: AI 自我進化的多智能體框架
 
 <p align="center">
-[ <b>En</b> |
-<a href="docs/README_CN.md">中</a> |
-<a href="docs/README_FR.md">Fr</a> |
-<a href="docs/README_JA.md">日</a> ]
-<b>Assign different roles to GPTs to form a collaborative entity for complex tasks.</b>
+<b>讓 AI 產生 AI Agent，並自行創造符合自身需求的工具</b>
 </p>
 
 <p align="center">
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
-<a href="https://discord.gg/DYn29wFk9z"><img src="https://dcbadge.vercel.app/api/server/DYn29wFk9z?style=flat" alt="Discord Follow"></a>
-<a href="https://twitter.com/MetaGPT_"><img src="https://img.shields.io/twitter/follow/MetaGPT?style=social" alt="Twitter Follow"></a>
+<a href="https://github.com/geekan/MetaGPT"><img src="https://img.shields.io/badge/Based%20on-MetaGPT-green.svg" alt="Based on MetaGPT"></a>
 </p>
 
-<h4 align="center">
-    
-</h4>
+## 🌟 核心理念
 
-## News
+**AI-create-AI** 是一個革命性的多智能體框架，致力於實現 AI 的自我進化能力：
 
-🚀 Mar. 10, 2025: 🎉 [mgx.dev](https://mgx.dev/) is the #1 Product of the Week on @ProductHunt! 🏆
+1. **AI 產生 AI Agent**：透過自然語言描述，AI 可以自動產生具備特定能力的智能體
+2. **工具自我創造**：AI Agent 能夠識別任務需求，自行設計、實作並註冊符合自身需求的工具
+3. **持續自我優化**：Agent 在使用過程中不斷學習，創造更高效的工具來提升自身能力
 
-🚀 Mar. &nbsp; 4, 2025: 🎉 [mgx.dev](https://mgx.dev/) is the #1 Product of the Day on @ProductHunt! 🏆
+### 核心特性
 
-🚀 Feb. 19, 2025: Today we are officially launching our natural language programming product: [MGX (MetaGPT X)](https://mgx.dev/) - the world's first AI agent development team. More details on [Twitter](https://x.com/MetaGPT_/status/1892199535130329356).
+- 🤖 **Agent 自動產生**：只需描述需求，AI 即可產生完整的 Agent 程式碼
+- 🛠️ **工具動態創造**：Agent 可以根據任務需求自動設計和實作新工具
+- 🔄 **自我進化循環**：Agent → 識別需求 → 創造工具 → 增強能力 → 處理更複雜任務
+- 📦 **工具註冊系統**：完善的工具註冊、發現和推薦機制
+- 🎯 **智能工具推薦**：基於任務需求自動推薦最合適的工具
 
-🚀 Feb. 17, 2025: We introduced two papers: [SPO](https://arxiv.org/pdf/2502.06855) and [AOT](https://arxiv.org/pdf/2502.12018), check the [code](examples)!
+## 🚀 快速開始
 
-🚀 Jan. 22, 2025: Our paper [AFlow: Automating Agentic Workflow Generation](https://openreview.net/forum?id=z5uVAKwmjf) accepted for **oral presentation (top 1.8%)** at ICLR 2025, **ranking #2** in the LLM-based Agent category.
+### 安裝
 
-👉👉 [Earlier news](docs/NEWS.md) 
-
-## Software Company as Multi-Agent System
-
-1. MetaGPT takes a **one line requirement** as input and outputs **user stories / competitive analysis / requirements / data structures / APIs / documents, etc.**
-2. Internally, MetaGPT includes **product managers / architects / project managers / engineers.** It provides the entire process of a **software company along with carefully orchestrated SOPs.**
-   1. `Code = SOP(Team)` is the core philosophy. We materialize SOP and apply it to teams composed of LLMs.
-
-![A software company consists of LLM-based roles](docs/resources/software_company_cd.jpeg)
-
-<p align="center">Software Company Multi-Agent Schematic (Gradually Implementing)</p>
-
-## Get Started
-
-### Installation
-
-> Ensure that Python 3.9 or later, but less than 3.12, is installed on your system. You can check this by using: `python --version`.  
-> You can use conda like this: `conda create -n metagpt python=3.9 && conda activate metagpt`
+> 確保系統已安裝 Python 3.9 或更高版本（但低於 3.12）。可以使用 `python --version` 檢查。  
+> 可以使用 conda：`conda create -n ai-create-ai python=3.9 && conda activate ai-create-ai`
 
 ```bash
 pip install --upgrade metagpt
-# or `pip install --upgrade git+https://github.com/geekan/MetaGPT.git`
-# or `git clone https://github.com/geekan/MetaGPT && cd MetaGPT && pip install --upgrade -e .`
+# 或 `pip install --upgrade git+https://github.com/geekan/MetaGPT.git`
+# 或 `git clone https://github.com/geekan/MetaGPT && cd MetaGPT && pip install --upgrade -e .`
 ```
 
-**Install [node](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation#using-npm) before actual use.**
+**在實際使用前，請先安裝 [node](https://nodejs.org/en/download) 和 [pnpm](https://pnpm.io/installation#using-npm)。**
 
-For detailed installation guidance, please refer to [cli_install](https://docs.deepwisdom.ai/main/en/guide/get_started/installation.html#install-stable-version)
- or [docker_install](https://docs.deepwisdom.ai/main/en/guide/get_started/installation.html#install-with-docker)
+### 設定
 
-### Configuration
+執行以下指令初始化設定，或手動建立 `~/.metagpt/config2.yaml` 檔案：
 
-You can init the config of MetaGPT by running the following command, or manually create `~/.metagpt/config2.yaml` file:
 ```bash
-# Check https://docs.deepwisdom.ai/main/en/guide/get_started/configuration.html for more details
-metagpt --init-config  # it will create ~/.metagpt/config2.yaml, just modify it to your needs
+metagpt --init-config  # 將建立 ~/.metagpt/config2.yaml，依需求修改即可
 ```
 
-You can configure `~/.metagpt/config2.yaml` according to the [example](https://github.com/geekan/MetaGPT/blob/main/config/config2.example.yaml) and [doc](https://docs.deepwisdom.ai/main/en/guide/get_started/configuration.html):
+設定 `~/.metagpt/config2.yaml`：
 
 ```yaml
 llm:
-  api_type: "openai"  # or azure / ollama / groq etc. Check LLMType for more options
-  model: "gpt-4-turbo"  # or gpt-3.5-turbo
-  base_url: "https://api.openai.com/v1"  # or forward url / other llm url
+  api_type: "openai"  # 或 azure / ollama / groq 等
+  model: "gpt-4-turbo"  # 或 gpt-3.5-turbo
+  base_url: "https://api.openai.com/v1"  # 或轉發 URL / 其他 LLM URL
   api_key: "YOUR_API_KEY"
 ```
 
-### Usage
+## 💡 使用範例
 
-After installation, you can use MetaGPT at CLI
+### 範例 1: AI 產生 AI Agent
 
-```bash
-metagpt "Create a 2048 game"  # this will create a repo in ./workspace
-```
-
-or use it as library
+讓 AI 根據您的需求自動建立一個新的 Agent：
 
 ```python
-from metagpt.software_company import generate_repo
-from metagpt.utils.project_repo import ProjectRepo
+import asyncio
+from examples.agent_creator import AgentCreator
 
-repo: ProjectRepo = generate_repo("Create a 2048 game")  # or ProjectRepo("<path>")
-print(repo)  # it will print the repo structure with files
+async def main():
+    creator = AgentCreator()
+    
+    # 描述您想要的 Agent 功能
+    requirement = """
+    建立一個名為 SimpleTester 的 Agent，它能夠：
+    1. 接收任何程式碼片段（字串）
+    2. 為給定程式碼撰寫測試程式碼，並將測試程式碼儲存為 .py 檔案
+    3. 執行測試程式碼
+    可以使用 pytest 作為測試框架。
+    """
+    
+    await creator.run(requirement)
+    # 產生的 Agent 程式碼將儲存在 workspace/agent_created_agent.py
+
+asyncio.run(main())
 ```
 
-You can also use [Data Interpreter](https://github.com/geekan/MetaGPT/tree/main/examples/di) to write code:
+### 範例 2: Agent 自行創造工具
+
+Agent 可以根據任務需求自動建立並使用自訂工具：
 
 ```python
 import asyncio
 from metagpt.roles.di.data_interpreter import DataInterpreter
+from metagpt.tools.tool_registry import register_tool
+
+# 定義自訂工具（Agent 也可以動態產生這些工具）
+@register_tool()
+def magic_function(arg1: str, arg2: int) -> dict:
+    """
+    執行某種魔法操作
+    
+    Args:
+        arg1 (str): 第一個參數
+        arg2 (int): 第二個參數
+        
+    Returns:
+        dict: 處理結果
+    """
+    return {"arg1": arg1 * 3, "arg2": arg2 * 5}
 
 async def main():
-    di = DataInterpreter()
-    await di.run("Run data analysis on sklearn Iris dataset, include a plot")
+    # DataInterpreter 會自動發現並使用註冊的工具
+    di = DataInterpreter(tools=["magic_function"])
+    await di.run("使用 magic_function，arg1='A'，arg2=2，告訴我結果。")
 
-asyncio.run(main())  # or await main() in a jupyter notebook setting
+asyncio.run(main())
 ```
 
+### 範例 3: 建構自訂 Agent
 
-### QuickStart & Demo Video
-- Try it on [MetaGPT Huggingface Space](https://huggingface.co/spaces/deepwisdom/MetaGPT-SoftwareCompany)
-- [Matthew Berman: How To Install MetaGPT - Build A Startup With One Prompt!!](https://youtu.be/uT75J_KG_aY)
-- [Official Demo Video](https://github.com/geekan/MetaGPT/assets/2707039/5e8c1062-8c35-440f-bb20-2b0320f8d27d)
+建立具有特定能力的 Agent：
 
-https://github.com/user-attachments/assets/888cb169-78c3-4a42-9d62-9d90ed3928c9
+```python
+import asyncio
+from metagpt.actions import Action
+from metagpt.roles import Role
+from metagpt.schema import Message
 
-## Tutorial
+class SimpleWriteCode(Action):
+    PROMPT_TEMPLATE: str = """
+    撰寫一個 Python 函式，能夠 {instruction}，並提供兩個可執行的測試用例。
+    回傳 ```python your_code_here ```，不要其他文字。
+    """
+    
+    async def run(self, instruction: str):
+        prompt = self.PROMPT_TEMPLATE.format(instruction=instruction)
+        rsp = await self._aask(prompt)
+        # 解析並回傳程式碼
+        return self.parse_code(rsp)
 
-- 🗒 [Online Document](https://docs.deepwisdom.ai/main/en/)
-- 💻 [Usage](https://docs.deepwisdom.ai/main/en/guide/get_started/quickstart.html)  
-- 🔎 [What can MetaGPT do?](https://docs.deepwisdom.ai/main/en/guide/get_started/introduction.html)
-- 🛠 How to build your own agents? 
-  - [MetaGPT Usage & Development Guide | Agent 101](https://docs.deepwisdom.ai/main/en/guide/tutorials/agent_101.html)
-  - [MetaGPT Usage & Development Guide | MultiAgent 101](https://docs.deepwisdom.ai/main/en/guide/tutorials/multi_agent_101.html)
-- 🧑‍💻 Contribution
-  - [Develop Roadmap](docs/ROADMAP.md)
-- 🔖 Use Cases
-  - [Data Interpreter](https://docs.deepwisdom.ai/main/en/guide/use_cases/agent/interpreter/intro.html)
-  - [Debate](https://docs.deepwisdom.ai/main/en/guide/use_cases/multi_agent/debate.html)
-  - [Researcher](https://docs.deepwisdom.ai/main/en/guide/use_cases/agent/researcher.html)
-  - [Receipt Assistant](https://docs.deepwisdom.ai/main/en/guide/use_cases/agent/receipt_assistant.html)
-- ❓ [FAQs](https://docs.deepwisdom.ai/main/en/guide/faq.html)
+class SimpleCoder(Role):
+    name: str = "Alice"
+    profile: str = "SimpleCoder"
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.set_actions([SimpleWriteCode])
+    
+    async def _act(self) -> Message:
+        todo = self.rc.todo
+        msg = self.get_memories(k=1)[0]
+        code_text = await todo.run(msg.content)
+        return Message(content=code_text, role=self.profile, cause_by=type(todo))
 
-## Support
+# 使用
+async def main():
+    coder = SimpleCoder()
+    result = await coder.run("撰寫一個計算列表乘積的函式並執行它")
+    print(result)
 
-### Discord Join US
-
-📢 Join Our [Discord Channel](https://discord.gg/ZRHeExS6xv)! Looking forward to seeing you there! 🎉
-
-### Contributor form
-
-📝 [Fill out the form](https://airtable.com/appInfdG0eJ9J4NNL/pagK3Fh1sGclBvVkV/form) to become a contributor. We are looking forward to your participation!
-
-### Contact Information
-
-If you have any questions or feedback about this project, please feel free to contact us. We highly appreciate your suggestions!
-
-- **Email:** alexanderwu@deepwisdom.ai
-- **GitHub Issues:** For more technical inquiries, you can also create a new issue in our [GitHub repository](https://github.com/geekan/metagpt/issues).
-
-We will respond to all questions within 2-3 business days.
-
-## Citation
-
-To stay updated with the latest research and development, follow [@MetaGPT_](https://twitter.com/MetaGPT_) on Twitter. 
-
-To cite [MetaGPT](https://openreview.net/forum?id=VtmBAGCN7o) in publications, please use the following BibTeX entries.   
-
-```bibtex
-@inproceedings{hong2024metagpt,
-      title={Meta{GPT}: Meta Programming for A Multi-Agent Collaborative Framework},
-      author={Sirui Hong and Mingchen Zhuge and Jonathan Chen and Xiawu Zheng and Yuheng Cheng and Jinlin Wang and Ceyao Zhang and Zili Wang and Steven Ka Shing Yau and Zijuan Lin and Liyang Zhou and Chenyu Ran and Lingfeng Xiao and Chenglin Wu and J{\"u}rgen Schmidhuber},
-      booktitle={The Twelfth International Conference on Learning Representations},
-      year={2024},
-      url={https://openreview.net/forum?id=VtmBAGCN7o}
-}
+asyncio.run(main())
 ```
 
-For more work, please refer to [Academic Work](docs/ACADEMIC_WORK.md).
+## 🏗️ 架構設計
+
+### Agent 產生流程
+
+```
+使用者需求描述
+    ↓
+AgentCreator (AI)
+    ↓
+分析需求 → 設計 Agent 結構 → 產生程式碼
+    ↓
+新的 Agent 實例
+```
+
+### 工具創造流程
+
+```
+Agent 執行任務
+    ↓
+識別工具需求
+    ↓
+設計工具介面 → 實作工具程式碼 → 註冊工具
+    ↓
+使用新工具完成任務
+```
+
+### 核心元件
+
+1. **AgentCreator**: 根據自然語言描述產生 Agent 程式碼
+2. **ToolRegistry**: 工具註冊中心，管理所有可用工具
+3. **ToolRecommender**: 智能工具推薦系統
+4. **DataInterpreter**: 資料解釋器，能夠動態發現和使用工具
+5. **RoleZero**: 基礎角色類別，支援工具動態載入
+
+## 📚 文件與教學
+
+- 📖 [線上文件](https://docs.deepwisdom.ai/main/en/)
+- 🎓 [Agent 開發指南](https://docs.deepwisdom.ai/main/en/guide/tutorials/agent_101.html)
+- 🔧 [工具開發指南](examples/di/custom_tool.py)
+- 💻 [範例程式碼](examples/)
+
+## 🎯 應用場景
+
+- **自動化測試 Agent**：自動產生測試程式碼並執行
+- **資料分析 Agent**：根據需求創造資料處理工具
+- **程式碼產生 Agent**：自動產生符合規範的程式碼
+- **工具鏈建構**：為特定領域自動建構專用工具集
+- **自我優化系統**：Agent 持續改進自身能力
+
+## 🤝 貢獻
+
+我們歡迎所有形式的貢獻！請查看 [貢獻指南](docs/ROADMAP.md) 了解如何參與。
+
+## 📄 授權
+
+本專案基於 [MIT 授權](LICENSE) 開源。
+
+## 🙏 致謝
+
+本專案基於 [MetaGPT](https://github.com/geekan/MetaGPT) 框架建構，感謝 MetaGPT 團隊的開源貢獻。
+
+## 📧 聯絡方式
+
+如有任何問題或建議，歡迎透過以下方式聯絡：
+
+- **GitHub Issues**: [建立 Issue](https://github.com/geekan/metagpt/issues)
+- **Email**: alexanderwu@deepwisdom.ai
+
+---
+
+<p align="center">
+<b>讓 AI 創造 AI，讓工具自我進化</b>
+</p>
